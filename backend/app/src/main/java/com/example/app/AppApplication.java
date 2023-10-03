@@ -11,5 +11,3 @@ public class AppApplication {
 	}
 
 }
-//コミットのブランチをseiyaにへんこうしたい
-//役割分担・プログラムの動作確認
