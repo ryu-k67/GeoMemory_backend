@@ -12,4 +12,6 @@ public interface AppRepository extends R2dbcRepository<Account, Integer>{
   Flux<Account> findByTitleContaining(String title);
   
   Flux<Account> findByPublished(boolean isPublished);
+
+  boolean existsById(int userId);
 }

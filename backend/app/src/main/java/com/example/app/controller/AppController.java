@@ -1,5 +1,7 @@
 package com.example.app.controller;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,8 +46,15 @@ public class AppController {
     //サインアップ時にアカウント情報を登録する
     @PostMapping("/accountSignup")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Account> createAccount(@RequestBody Account account) {
-        account.userid = appService.createUserid();
+    public Mono<Account> accountSignup(@RequestBody Account account) {
+        Random random = new Random();
+        int userid = 0;
+
+        userid = random.nextInt();
+        while(appService.isUseridUnique(userid)){
+            userid = random.nextInt();
+        }
+        account.userid = userid;
         return appService.save(account);
     }
 

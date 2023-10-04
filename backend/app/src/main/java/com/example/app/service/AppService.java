@@ -1,7 +1,6 @@
 package com.example.app.service;
 
 import java.util.Optional;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,20 +32,8 @@ public class AppService {
     return appRepository.save(account);
     }
 
-    public int createUserid() {
-        Random random = new Random();
-        Boolean flag = false;
-        int userid = 0;
-
-        while(flag){
-            //useridの生成
-            userid = random.nextInt();
-            //test
-            flag = true;
-
-            //if データベースに重複がないか確認
-        }
-        return userid;
+    public boolean isUseridUnique(int userid) {
+        return appRepository.existsById(userid);
     }
 
     public Mono<Account> update(int id, Account app) {
