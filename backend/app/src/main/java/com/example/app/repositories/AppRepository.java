@@ -5,13 +5,15 @@ import org.springframework.stereotype.Repository;
 
 import com.example.app.models.Account;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+//import reactor.core.publisher.Flux;
 
 @Repository
 public interface AppRepository extends R2dbcRepository<Account, Integer>{
-  Flux<Account> findByTitleContaining(String title);
+  //Flux<Account> findByTitleContaining(String title);
   
-  Flux<Account> findByPublished(boolean isPublished);
+  //Flux<Account> findByPublished(boolean isPublished);
 
-  boolean existsById(int userId);
+  Mono<Boolean> existsById(Integer userid);
 }
