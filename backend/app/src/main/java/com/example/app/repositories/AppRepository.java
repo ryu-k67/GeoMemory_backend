@@ -16,4 +16,7 @@ public interface AppRepository extends R2dbcRepository<Account, Integer>{
   //Flux<Account> findByPublished(boolean isPublished);
 
   Mono<Boolean> existsById(Integer userid);
+
+  //signinの検索時に使用　findBy{a}And{b}で検索
+  Mono<Account> findByMailaddressAndPassword(String mailaddress, String password);
 }

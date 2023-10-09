@@ -47,9 +47,15 @@ public class AppController {
     return appService.findById(id);
     }
 
-    @PostMapping("/accountSignup")
+    @GetMapping("/signin")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Integer> signin(@RequestBody Account account) {
+        return appService.signin(account);
+    }
+
+    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Integer> accountSignup(@RequestBody Account account) {
+    public Mono<Integer> signup(@RequestBody Account account) {
         return appService.regist(account);
     }
 

@@ -4,7 +4,6 @@ import java.util.Optional;
 //import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Service;
 
 import com.example.app.models.Account;
@@ -62,6 +61,15 @@ public class AppService {
     // return appRepository.findByPublished(isPublished);
     //}
 
+    public Mono<Integer> signin(Account accountInfo){
+        String mailaddress = accountInfo.getMailaddress();
+        String password = accountInfo.getPassword();
+
+        return appRepository.findByMailaddressAndPassword(mailaddress, password)
+                .map(Account::getUserid)
+                .switchIfEmpty(Mono.just(-1)); // 該当する行が見つからない場合には-1を返す
+    }
+
     public Mono<Integer> regist(Account accountInfo){
         var account = new Account();
         account.setMailaddress(accountInfo.getMailaddress());
@@ -69,7 +77,7 @@ public class AppService {
 
         return save(account)
         .map(savedAccount -> savedAccount.getUserid())
-        .onErrorReturn(-1);
+        .onErrorReturn(-1);// 該当する行が見つからない場合には-1を返す
     }
 
     //public Mono<Account> regist(Account accountInfo){
