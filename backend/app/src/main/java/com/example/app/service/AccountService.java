@@ -17,7 +17,7 @@ public class AccountService {
 
     public Mono<Integer> signin(String mail, String pass) {
         return accountRepository.findByMailaddressAndPassword(mail, pass)
-                .map(Account::getUserid)
+                .map(Account::getUserId)
                 .switchIfEmpty(Mono.just(-1)); // 該当する行が見つからない場合には-1を返す
     }
 
@@ -30,7 +30,7 @@ public class AccountService {
         account.setPassword(password);
 
         return save(account)
-        .map(savedAccount -> savedAccount.getUserid())
+        .map(savedAccount -> savedAccount.getUserId())
         .onErrorReturn(-1);
     }
 

@@ -43,14 +43,14 @@ public class Post {
 
     }
 
-    public Post(int postid, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
-        this.postid = postid;
+    public Post(int postId, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userId) {
+        this.postId = postId;
         this.content = content;
         this.postImg = postImg;
         this.datetime = datetime;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.userid = userid;
+        this.userId = userId;
     }
     
     //@Override
