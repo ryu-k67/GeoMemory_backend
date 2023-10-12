@@ -21,11 +21,11 @@ public class PostService {
     public void post(PostRequest postRequest) {
         var post = new Post();
         post.setContent(postRequest.getContent());
-        post.setPostImg(postRequest.getPostImg());
+        post.setPostimg(postRequest.getPostimg());
         post.setDatetime(postRequest.getDatetime());
         post.setLatitude(postRequest.getLatitude());
         post.setLongtitude(postRequest.getLongtitude());
-        post.setUserId(postRequest.getUserId());
+        post.setUserid(postRequest.getUserid());
         //post.setPostid(-1);
         postRepository.save(post);
         return;

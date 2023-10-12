@@ -14,16 +14,16 @@ public class ProfileService {
 
     public void registProfile(ProfileRequest profileRequest){
         var profile = new Profile();
-        String userName = profileRequest.getUserName();
+        String userName = profileRequest.getUsername();
         //byte[] profImg = profileRequest.getProf_img();
         int userId = profileRequest.getUserid();
 
-        profile.setFollowerNumber(0);
-        profile.setFollowingNumber(0);
-        profile.setPostNumber(0);
-        //profile.setProfImg(profImg);
-        profile.setUserName(userName);
-        profile.setUserId(userId);
+        profile.setFollowernumber(0);
+        profile.setFollowingnumber(0);
+        profile.setPostnumber(0);
+        //profile.setProfimg(profImg);
+        profile.setUsername(userName);
+        profile.setUserid(userId);
         profileRepository.save(profile);
         return;
     }

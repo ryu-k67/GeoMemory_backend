@@ -2,24 +2,26 @@ package com.example.app.models;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "comment")
+// @Entity
+// @Table(name = "comment")
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int commentid;
 
-    private int postId;
+    private int postid;
 
-    private int userId;
+    private int userid;
 
     private String content;
 
@@ -29,10 +31,10 @@ public class Comment {
 
     }
 
-    public Comment(int commentId, int postId, int userId, String content, LocalDateTime datetime){
-        this.commentId = commentId;
-        this.postId = postId;
-        this.userId = userId;
+    public Comment(int commentid, int postid, int userid, String content, LocalDateTime datetime){
+        this.commentid = commentid;
+        this.postid = postid;
+        this.userid = userid;
         this.content = content;
         this.datetime = datetime;
     }
