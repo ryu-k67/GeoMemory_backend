@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name="account")
 public class Account {
@@ -32,30 +34,10 @@ public class Account {
         this.password = password;
     }
 
-    // getters and setters
-    public int getUserid(){
-        return userid;
-    }
-    
-    public void setUserid(int userid){
-        this.userid = userid;
-    }
-
-    public String getMailaddress(){
-        return mailaddress;
-    }
-
-    public void setMailaddress(String mailaddress){
-        this.mailaddress = mailaddress;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
+    //@Override
+    //public int getUserid(){
+    //    return userid;
+    //}
 
     @Override
     public String toString() {

@@ -10,12 +10,12 @@ import reactor.core.publisher.Mono;
 //import reactor.core.publisher.Flux;
 
 @Repository
-public interface AppRepository extends R2dbcRepository<Account, Integer>{
+public interface AccountRepository extends R2dbcRepository<Account, Integer>{
   //Flux<Account> findByTitleContaining(String title);
   
   //Flux<Account> findByPublished(boolean isPublished);
 
-  Mono<Boolean> existsById(Integer userid);
+  //boolean existsById(Integer userid);
 
   //signinの検索時に使用　findBy{a}And{b}で検索
   Mono<Account> findByMailaddressAndPassword(String mailaddress, String password);
