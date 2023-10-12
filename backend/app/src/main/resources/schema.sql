@@ -16,6 +16,9 @@ CREATE TABLE IF NOT EXISTS profile(
     userId INT NOT NULL,
     userName VARCHAR(15),
     prof_img BYTEA,
+    followingNumber INT,
+    followerNumber INT,
+    postNumber INT,
     PRIMARY KEY (userId),
     FOREIGN KEY (userId) REFERENCES account
 );

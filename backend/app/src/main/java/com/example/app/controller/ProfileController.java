@@ -9,22 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.app.models.PostRequest;
-import com.example.app.service.PostService;
+import com.example.app.models.ProfileRequest;
+import com.example.app.service.ProfileService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class PostController {
+public class ProfileController {
     @Autowired
-    PostService postService;
+    ProfileService profileService;
 
-    //ポスト処理
-    @PostMapping("/post")
+    //プロフィールの登録
+    @PostMapping("/registProfile")
     @ResponseStatus(HttpStatus.OK)
-    public void post(@RequestBody PostRequest postRequest) {
-        postService.post(postRequest);
+    public void registProfile(@RequestBody ProfileRequest profileRequest){
+        profileService.registProfile(profileRequest);
         return;
     }
-
 }
