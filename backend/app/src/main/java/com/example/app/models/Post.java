@@ -25,7 +25,7 @@ public class Post {
     private String content;
 
     // @Column(name = "post_img")
-    private byte[] postImg;
+    private byte[] postimg;
 
     // @Column(name = "datetime")
     private LocalDateTime datetime;
@@ -43,14 +43,14 @@ public class Post {
 
     }
 
-    public Post(int postId, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userId) {
-        this.postId = postId;
+    public Post(int postid, String content, byte[] postimg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
+        this.postid = postid;
         this.content = content;
-        this.postImg = postImg;
+        this.postimg = postimg;
         this.datetime = datetime;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.userId = userId;
+        this.userid = userid;
     }
     
     //@Override
