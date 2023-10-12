@@ -1,20 +1,22 @@
--- DROP TABLE IF EXISTS good;
--- DROP TABLE IF EXISTS comment;
--- DROP TABLE IF EXISTS post;
--- DROP TABLE IF EXISTS follow;
--- DROP TABLE IF EXISTS profile;
--- DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS good;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS follow;
+DROP TABLE IF EXISTS profile;
+DROP TABLE IF EXISTS account;
 
-CREATE TABLE IF NOT EXISTS account(
+-- CREATE TABLE IF NOT EXISTS account(
+CREATE TABLE account(
     userId SERIAL NOT NULL,
-    mailAddress VARCHAR(31),
-    password VARCHAR(31),
+    mailAddress VARCHAR(31) NOT NULL,
+    password VARCHAR(31) NOT NULL,
     PRIMARY KEY (userId)
 );
 
-CREATE TABLE IF NOT EXISTS profile(
+-- CREATE TABLE IF NOT EXISTS profile(
+CREATE TABLE profile(
     userId INT NOT NULL,
-    userName VARCHAR(15),
+    userName VARCHAR(15) NOT NULL,
     prof_img BYTEA,
     followerNumber INT NOT NULL,
     followingNumber INT NOT NULL,
@@ -23,7 +25,8 @@ CREATE TABLE IF NOT EXISTS profile(
     FOREIGN KEY (userId) REFERENCES account
 );
 
-CREATE TABLE IF NOT EXISTS follow(
+-- CREATE TABLE IF NOT EXISTS follow(
+CREATE TABLE follow(
     followId SERIAL NOT NULL,
     userId INT NOT NULL,
     prof_img BYTEA,
@@ -31,7 +34,8 @@ CREATE TABLE IF NOT EXISTS follow(
     FOREIGN KEY (userId) REFERENCES account
 );
 
-CREATE TABLE IF NOT EXISTS post(
+-- CREATE TABLE IF NOT EXISTS post(
+CREATE TABLE post(
     postId SERIAL NOT NULL,
     content VARCHAR(511),
     post_img BYTEA,
@@ -43,7 +47,8 @@ CREATE TABLE IF NOT EXISTS post(
     FOREIGN KEY (userId) REFERENCES account
 );
 
-CREATE TABLE IF NOT EXISTS comment(
+-- CREATE TABLE IF NOT EXISTS comment(
+CREATE TABLE comment(
     commentId SERIAL NOT NULL,
     postId INT NOT NULL,
     userId INT NOT NULL,
@@ -54,7 +59,8 @@ CREATE TABLE IF NOT EXISTS comment(
     FOREIGN KEY (userId) REFERENCES account
 );
 
-CREATE TABLE IF NOT EXISTS good(
+-- CREATE TABLE IF NOT EXISTS good(
+CREATE TABLE good(
     goodId SERIAL NOT NULL,
     userId INT NOT NULL,
     postId INT NOT NULL,

@@ -5,38 +5,38 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "post")
+// @Entity
+// @Table(name = "post")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postid")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "postid")
     public int postid;
 
-    @Column(name = "content")
+    // @Column(name = "content")
     private String content;
 
-    @Column(name = "post_img")
+    // @Column(name = "post_img")
     private byte[] postImg;
 
-    @Column(name = "datetime")
+    // @Column(name = "datetime")
     private LocalDateTime datetime;
 
-    @Column(name = "latitude")
+    // @Column(name = "latitude")
     private BigDecimal latitude;
 
-    @Column(name = "longtitude")
+    // @Column(name = "longtitude")
     private BigDecimal longtitude;
 
-    @Column(name = "userid")
+    // @Column(name = "userid")
     private int userid;
 
     public Post() {
