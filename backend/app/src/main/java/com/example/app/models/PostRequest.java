@@ -17,5 +17,5 @@ public class PostRequest {
 
     private BigDecimal longtitude;
 
-    private int userid;
+    private int userId;
 }

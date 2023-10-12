@@ -18,8 +18,8 @@ import lombok.Data;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postid")
-    public int postid;
+    @Column(name = "postId")
+    public int postId;
 
     @Column(name = "content")
     private String content;
@@ -36,21 +36,21 @@ public class Post {
     @Column(name = "longtitude")
     private BigDecimal longtitude;
 
-    @Column(name = "userid")
-    private int userid;
+    @Column(name = "userId")
+    private int userId;
 
     public Post() {
 
     }
 
-    public Post(int postid, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
-        this.postid = postid;
+    public Post(int postId, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userId) {
+        this.postId = postId;
         this.content = content;
         this.postImg = postImg;
         this.datetime = datetime;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.userid = userid;
+        this.userId = userId;
     }
     
     //@Override

@@ -12,8 +12,8 @@ import lombok.Data;
 @Table(name = "profile")
 public class Profile {
     @Id
-    @Column(name = "userid")
-    public int userid;
+    @Column(name = "userId")
+    public int userId;
 
     @Column(name = "userName")
     private String userName;
@@ -34,8 +34,8 @@ public class Profile {
 
     }
 
-    public Profile(int userid, String userName, byte[] profImg, int followingNumber, int followerNumber, int postNumber){
-        this.userid = userid;
+    public Profile(int userId, String userName, byte[] profImg, int followingNumber, int followerNumber, int postNumber){
+        this.userId = userId;
         this.userName = userName;
         this.profImg = profImg;
         this.followingNumber = followingNumber;

@@ -16,14 +16,14 @@ public class ProfileService {
         var profile = new Profile();
         String userName = profileRequest.getUserName();
         //byte[] profImg = profileRequest.getProf_img();
-        int userid = profileRequest.getUserid();
+        int userId = profileRequest.getUserid();
 
         profile.setFollowerNumber(0);
         profile.setFollowingNumber(0);
         profile.setPostNumber(0);
         //profile.setProfImg(profImg);
         profile.setUserName(userName);
-        profile.setUserid(userid);
+        profile.setUserId(userId);
         profileRepository.save(profile);
         return;
     }

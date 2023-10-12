@@ -15,8 +15,8 @@ import lombok.Data;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid")
-    public int userid;
+    @Column(name = "userId")
+    public int userId;
 
     @Column(name = "mailaddress")
     private String mailaddress;
@@ -28,8 +28,8 @@ public class Account {
 
     }
 
-    public Account(int userid, String mailaddress, String password) {
-        this.userid = userid;
+    public Account(int userId, String mailaddress, String password) {
+        this.userId = userId;
         this.mailaddress = mailaddress;
         this.password = password;
     }
@@ -41,7 +41,7 @@ public class Account {
 
     @Override
     public String toString() {
-    return "Account [userid=" + userid + ", mailaddress=" + mailaddress + ", password=" + password + "]";
+    return "Account [userid=" + userId + ", mailaddress=" + mailaddress + ", password=" + password + "]";
     }
 
 }

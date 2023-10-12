@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS profile(
 CREATE TABLE IF NOT EXISTS follow(
     followId SERIAL NOT NULL,
     userId INT NOT NULL,
-    prof_img BYTEA,
+    followedUserId INT NOT NULL,
     PRIMARY KEY (followId),
     FOREIGN KEY (userId) REFERENCES account
 );
