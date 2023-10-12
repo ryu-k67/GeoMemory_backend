@@ -2,32 +2,32 @@ package com.example.app.models;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "profile")
+// @Entity
+// @Table(name = "profile")
 public class Profile {
     @Id
-    @Column(name = "userId")
+    //@Column(name = "userId")
     public int userId;
 
-    @Column(name = "userName")
+    //@Column(name = "userName")
     private String userName;
 
-    @Column(name = "prof_img")
+    //@Column(name = "prof_img")
     private byte[] profImg;
 
-    @Column(name = "followingNumber")
+    //@Column(name = "followingNumber")
     private int followingNumber;
 
-    @Column(name = "followerNumber")
+    //@Column(name = "followerNumber")
     private int followerNumber;
 
-    @Column(name = "postNumber")
+    //@Column(name = "postNumber")
     private int postNumber;
 
     public Profile(){

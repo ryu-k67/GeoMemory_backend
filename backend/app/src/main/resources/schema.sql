@@ -15,10 +15,10 @@ CREATE TABLE IF NOT EXISTS account(
 CREATE TABLE IF NOT EXISTS profile(
     userId INT NOT NULL,
     userName VARCHAR(15),
-    prof_img BYTEA,
-    followingNumber INT,
-    followerNumber INT,
-    postNumber INT,
+    profImg BYTEA,
+    followingNumber INT NOT NULL,
+    followerNumber INT NOT NULL,
+    postNumber INT NOT NULL,
     PRIMARY KEY (userId),
     FOREIGN KEY (userId) REFERENCES account
 );
@@ -34,13 +34,12 @@ CREATE TABLE IF NOT EXISTS follow(
 CREATE TABLE IF NOT EXISTS post(
     postId SERIAL NOT NULL,
     content VARCHAR(511),
-    post_img BYTEA,
+    postImg BYTEA,
     datetime TIMESTAMP(0),
     latitude NUMERIC(5,2),
     longtitude NUMERIC(5,2),
     userId INT NOT NULL,
-    PRIMARY KEY (postId),
-    FOREIGN KEY (userId) REFERENCES account
+    PRIMARY KEY (postId)
 );
 
 CREATE TABLE IF NOT EXISTS comment(

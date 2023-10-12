@@ -4,53 +4,48 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "post")
+// @Entity
+// @Table(name = "post")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postId")
-    public int postId;
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int postid;
 
-    @Column(name = "content")
     private String content;
 
-    @Column(name = "post_img")
+    //@Column(name = "post_img")
     private byte[] postImg;
 
-    @Column(name = "datetime")
     private LocalDateTime datetime;
 
-    @Column(name = "latitude")
     private BigDecimal latitude;
 
-    @Column(name = "longtitude")
     private BigDecimal longtitude;
 
-    @Column(name = "userId")
-    private int userId;
+    private int userid;
 
     public Post() {
 
     }
 
-    public Post(int postId, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userId) {
-        this.postId = postId;
+    public Post(int postid, String content, byte[] postImg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
+        this.postid = postid;
         this.content = content;
         this.postImg = postImg;
         this.datetime = datetime;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.userId = userId;
+        this.userid = userid;
     }
     
     //@Override
