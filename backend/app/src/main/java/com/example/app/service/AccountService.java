@@ -29,7 +29,7 @@ public class AccountService {
         account.setMailaddress(mailaddress);
         account.setPassword(password);
 
-        return save(account)
+        return accountRepository.save(account)
         .map(savedAccount -> savedAccount.getUserid())
         .onErrorReturn(-1);
     }
