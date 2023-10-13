@@ -14,7 +14,7 @@ import com.example.app.service.PostService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/post")
 public class PostController {
     @Autowired
     PostService postService;
