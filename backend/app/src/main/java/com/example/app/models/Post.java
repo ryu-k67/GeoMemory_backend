@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 
 // import jakarta.persistence.Column;
 // import jakarta.persistence.Entity;
@@ -16,8 +15,6 @@ import lombok.Data;
 @Data
 // @Entity
 // @Table(name = "post")
-// @Entity
-// @Table(name = "post")
 public class Post {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +22,6 @@ public class Post {
 
     private String content;
 
-    //@Column(name = "post_img")
     private byte[] postImg;
 
     private LocalDateTime datetime;

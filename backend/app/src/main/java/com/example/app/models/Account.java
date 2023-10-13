@@ -23,7 +23,6 @@ public class Account {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @Column(name="userid")
-    public int userid;
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int userid;
 

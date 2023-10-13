@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS good;
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS post;
-DROP TABLE IF EXISTS follow;
-DROP TABLE IF EXISTS profile;
-DROP TABLE IF EXISTS account;
+-- DROP TABLE IF EXISTS good;
+-- DROP TABLE IF EXISTS comment;
+-- DROP TABLE IF EXISTS post;
+-- DROP TABLE IF EXISTS follow;
+-- DROP TABLE IF EXISTS profile;
+-- DROP TABLE IF EXISTS account;
 
 -- CREATE TABLE IF NOT EXISTS account(
 CREATE TABLE account(
@@ -17,9 +17,9 @@ CREATE TABLE account(
 CREATE TABLE profile(
     userId INT NOT NULL,
     userName VARCHAR(15) NOT NULL,
-    prof_img BYTEA,
-    followerNumber INT NOT NULL,
+    profImg BYTEA,
     followingNumber INT NOT NULL,
+    followerNumber INT NOT NULL,
     postNumber INT NOT NULL,
     PRIMARY KEY (userId),
     FOREIGN KEY (userId) REFERENCES account
