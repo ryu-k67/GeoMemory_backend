@@ -39,4 +39,16 @@ public class FollowController {
     public Flux<Follow> getFollow(@PathVariable("id") int userid){
         return followService.get(userid);
     }
+
+    // 自分がフォローしてる人数を取得
+    @GetMapping("/get/followingNumber/{id}")
+    public Mono<Long> getFollowingNumber(@PathVariable("id") int userid){
+        return followService.getFollowingNumber(userid);
+    }
+
+    // 自分をフォローしてる人数を取得
+    @GetMapping("/get/followerNumber/{id}")
+    public Mono<Long> getFollowerNumber(@PathVariable("id") int followinguserid){
+        return followService.getFollowerNumber(followinguserid);
+    }
 }

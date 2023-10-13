@@ -9,7 +9,7 @@ import lombok.Data;
 public class PostRequest {
     private String content;
 
-    private byte[] postimg;
+    // private byte[] postimg;
 
     private LocalDateTime datetime;
 
