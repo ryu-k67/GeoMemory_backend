@@ -18,17 +18,19 @@ public class PostService {
     return postRepository.save(post);
     }
 
-    public void post(PostRequest postRequest) {
+    public Mono<Integer> post(PostRequest postRequest) {
         var post = new Post();
         post.setContent(postRequest.getContent());
-        post.setPostimg(postRequest.getPostimg());
+        // post.setPostimg(postRequest.getPostimg());
+        post.setPostimg(null);
         post.setDatetime(postRequest.getDatetime());
         post.setLatitude(postRequest.getLatitude());
         post.setLongtitude(postRequest.getLongtitude());
         post.setUserid(postRequest.getUserid());
         //post.setPostid(-1);
-        postRepository.save(post);
-        return;
+        return postRepository.save(post)
+        .map(savedPost -> savedPost.getPostid())
+        .onErrorReturn(-1);
     }
 
     //public Post update(int id, Post post) {
@@ -42,4 +44,10 @@ public class PostService {
      //       return Mono.empty();
      //   });
     //}
+
+    public Mono<Long> getPostNumber(int userid){
+        return postRepository.findByUserid(userid).count();
+        // .collectList()
+        // .flatMap(s -> s.size());
+    }
 }

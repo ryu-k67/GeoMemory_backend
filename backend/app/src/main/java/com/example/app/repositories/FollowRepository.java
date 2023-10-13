@@ -10,4 +10,5 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface FollowRepository extends R2dbcRepository<Follow, Integer>{
     Flux<Follow> findByUserid(int userid);
+    Flux<Follow> findByFollowinguserid(int userid);
 }
