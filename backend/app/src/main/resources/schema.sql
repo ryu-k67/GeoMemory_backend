@@ -30,9 +30,11 @@ CREATE TABLE IF NOT EXISTS follow(
 -- CREATE TABLE follow(
     followId SERIAL NOT NULL,
     userId INT NOT NULL,
-    followedUserId INT NOT NULL,
+    followingUserId INT NOT NULL,
     PRIMARY KEY (followId),
-    FOREIGN KEY (userId) REFERENCES account
+    FOREIGN KEY (userId) REFERENCES account,
+    FOREIGN KEY (followingUserId) REFERENCES account,
+    CHECK (userId != followingUserId)
 );
 
 CREATE TABLE IF NOT EXISTS post(
