@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.app.models.Profile;
 
+import reactor.core.publisher.Mono;
+
 @Repository
 public interface ProfileRepository extends R2dbcRepository<Profile, Integer>{
-    
+    Mono<Profile> findByUserid(int userid);
 }
