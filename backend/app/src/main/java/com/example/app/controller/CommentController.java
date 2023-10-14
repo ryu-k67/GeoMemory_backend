@@ -32,7 +32,7 @@ public class CommentController {
     }
 
     //コメント全権取得処理
-    @GetMapping("/get")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Comment> getAllComments() {
         return commentService.findAll();

@@ -29,7 +29,7 @@ public class ProfileController {
     //プロフィールの登録
     @PostMapping("/regist")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Integer> registProfile(@RequestBody ProfileRequest profileRequest){
+    public Mono<Void> registProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.registProfile(profileRequest);
     }
 
@@ -41,7 +41,7 @@ public class ProfileController {
 
     // プロフィールの更新
     @PutMapping("/update")
-    public Mono<Integer> updateProfile(@RequestBody ProfileRequest profileRequest){
+    public Mono<Void> updateProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.updateProfile(profileRequest);
     }
 

@@ -15,18 +15,15 @@ public class FollowService {
     @Autowired
     FollowRepository followRepository;
 
-    public Mono<Integer> post(FollowRequest followRequest){
+    public Mono<Void> post(FollowRequest followRequest){
         var follow = new Follow();
 
-        int userid = followRequest.getUserid();
-        int followinguserid = followRequest.getFollowinguserid();
+        follow.setUserid(followRequest.getUserid());
+        follow.setFollowinguserid(followRequest.getFollowinguserid());
 
-        follow.setUserid(userid);
-        follow.setFollowinguserid(followinguserid);
-
-        return followRepository.save(follow)
-        .map(savedFollow -> savedFollow.getFollowid())
-        .onErrorReturn(-1);
+        return followRepository.save(follow).then();
+        // .map(savedFollow -> savedFollow.getFollowid())
+        // .onErrorReturn(-1);
     }
 
     public Flux<Follow> get(int userid){

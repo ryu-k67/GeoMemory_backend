@@ -40,7 +40,7 @@ public class PostController {
     }
 
     //投稿全権取得処理
-    @GetMapping("/get")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Post> getAllPosts() {
         return postService.findAll();
