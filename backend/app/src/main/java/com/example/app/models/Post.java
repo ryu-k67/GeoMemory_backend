@@ -45,7 +45,6 @@ public class Post {
         this.latitude = latitude;
         this.longtitude = longtitude;
         this.userid = userid;
-        this.userid = userid;
     }
     
     //@Override
