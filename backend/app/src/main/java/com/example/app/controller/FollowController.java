@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.app.models.Follow;
 import com.example.app.models.FollowRequest;
 // import com.example.app.models.ProfileRequest;
 // import com.example.app.repositories.FollowRepository;
@@ -35,7 +34,7 @@ public class FollowController {
         return followService.post(followRequest);
     }
     
-    // 自分がフォローしてる人を取得
+    // 自分がフォローしてる人を配列で取得
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Integer> getFollow(@PathVariable("id") int userid){
