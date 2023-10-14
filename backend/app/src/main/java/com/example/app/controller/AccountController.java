@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/account")
 public class AccountController {
     @Autowired
     AccountService accountService;

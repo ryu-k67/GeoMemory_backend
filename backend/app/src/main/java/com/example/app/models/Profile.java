@@ -12,8 +12,9 @@ import lombok.Data;
 // @Table(name = "profile")
 public class Profile {
     @Id
+    public int profileid;
     // @Column(name = "userId")
-    public int userid;
+    private int userid;
 
     // @Column(name = "userName")
     private String username;
@@ -22,25 +23,26 @@ public class Profile {
     private byte[] profimg;
 
     // @Column(name = "followingNumber")
-    private int followingnumber;
+    //private int followingnumber;
 
     // @Column(name = "followerNumber")
-    private int followernumber;
+    //private int followernumber;
 
     // @Column(name = "postNumber")
-    private int postnumber;
+    //private int postnumber;
 
     public Profile(){
 
     }
 
-    public Profile(int userid, String username, byte[] profimg, int followingnumber, int followernumber, int postnumber){
+    public Profile(int profileid,int userid, String username, byte[] profimg){
+        this.profileid = profileid;
         this.userid = userid;
         this.username = username;
         this.profimg = profimg;
-        this.followingnumber = followingnumber;
-        this.followernumber = followernumber;
-        this.postnumber = postnumber;
+        //this.followingnumber = followingnumber;
+        //this.followernumber = followernumber;
+        //this.postnumber = postnumber;
     }
 
     public void setProfimg(int i, int j, int k, int l, int m) {

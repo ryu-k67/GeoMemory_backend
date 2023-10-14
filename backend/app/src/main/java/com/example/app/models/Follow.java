@@ -19,15 +19,15 @@ public class Follow {
 
     private int userid;
 
-    private int followeduserid;
+    private int followinguserid;
 
     public Follow(){
 
     }
 
-    public Follow(int followid, int userid, int followeduserid){
+    public Follow(int followid, int userid, int followinguserid){
         this.followid = followid;
         this.userid = userid;
-        this.followeduserid = followeduserid;
+        this.followinguserid = followinguserid;
     }
 }

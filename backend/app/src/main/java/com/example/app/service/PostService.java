@@ -22,7 +22,8 @@ public class PostService {
     public Mono<Void> post(PostRequest postRequest) {
         var post = new Post();
         post.setContent(postRequest.getContent());
-        post.setPostimg(postRequest.getPostimg());
+        // post.setPostimg(postRequest.getPostimg());
+        post.setPostimg(null);
         post.setDatetime(postRequest.getDatetime());
         post.setLatitude(postRequest.getLatitude());
         post.setLongtitude(postRequest.getLongtitude());
@@ -45,4 +46,10 @@ public class PostService {
      //       return Mono.empty();
      //   });
     //}
+
+    public Mono<Long> getPostNumber(int userid){
+        return postRepository.findByUserid(userid).count();
+        // .collectList()
+        // .flatMap(s -> s.size());
+    }
 }
