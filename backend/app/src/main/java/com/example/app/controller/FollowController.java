@@ -38,7 +38,7 @@ public class FollowController {
     // 自分がフォローしてる人を取得
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Follow> getFollow(@PathVariable("id") int userid){
+    public Flux<Integer> getFollow(@PathVariable("id") int userid){
         return followService.get(userid);
     }
 
@@ -56,6 +56,7 @@ public class FollowController {
         return followService.getFollowerNumber(followinguserid);
     }
 
+    // フォロー解除
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteFollow(@RequestBody FollowRequest followRequest) {
