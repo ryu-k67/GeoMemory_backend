@@ -26,7 +26,7 @@ public class AccountController {
     AccountService accountService;
 
     //サインインの処理
-    @GetMapping("/signin")
+    @PostMapping("/signin")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Integer> signin(@RequestBody AccountRequest accountRequest) {
         String mailaddress = accountRequest.getMailaddress();

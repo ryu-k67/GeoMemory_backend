@@ -30,7 +30,7 @@ public class GoodController {
     }
 
     // goodの取得
-    @GetMapping("/get")
+    @PostMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Boolean> getProfile(@RequestBody GoodRequest goodRequest){
         return goodService.getGood(goodRequest);
