@@ -26,8 +26,12 @@ public class FollowService {
         // .onErrorReturn(-1);
     }
 
-    public Flux<Follow> get(int userid){
-        return followRepository.findByUserid(userid);
+    public Flux<Integer> get(int userid){
+        return followRepository.findByUserid(userid)
+        // .map(c -> new Follow(c.getFollowid(),c.getUserid(),c.getFollowinguserid()))
+        // .flatMap(follow::follow.getFollowinguserid);
+        // .collectList()
+        .map(c -> c.getFollowinguserid());
     }
 
     public Mono<Long> getFollowingNumber(int userid){
