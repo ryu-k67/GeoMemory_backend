@@ -16,6 +16,7 @@ import com.example.app.models.Profile;
 import com.example.app.models.ProfileRequest;
 import com.example.app.service.ProfileService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -42,5 +43,11 @@ public class ProfileController {
     @PutMapping("/update")
     public Mono<Integer> updateProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.updateProfile(profileRequest);
+    }
+
+    // プロフィールの全件取得
+    @GetMapping("/get/all")
+    public Flux<Profile> getProfileAll(){
+        return profileService.findAll();
     }
 }

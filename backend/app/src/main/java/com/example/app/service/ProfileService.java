@@ -11,7 +11,10 @@ import com.example.app.models.Profile;
 import com.example.app.models.ProfileRequest;
 import com.example.app.repositories.ProfileRepository;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+//import reactor.core.publisher.Mono;
 
 @Service
 public class ProfileService {
@@ -24,9 +27,9 @@ public class ProfileService {
         //byte[] profImg = profileRequest.getProf_img();
         int userid = profileRequest.getUserid();
 
-        profile.setFollowernumber(0);
-        profile.setFollowingnumber(0);
-        profile.setPostnumber(0);
+        // profile.setFollowernumber(0);
+        // profile.setFollowingnumber(0);
+        // profile.setPostnumber(0);
         profile.setProfimg(null);
         profile.setUsername(username);
         profile.setUserid(userid);
@@ -68,12 +71,16 @@ public class ProfileService {
         // });
 
         return profileRepository.findByUserid(userid)
-            .map(c -> new Profile(c.getProfileid(),userid,username,c.getProfimg(),c.getFollowingnumber(),c.getFollowernumber(),c.getPostnumber()))
+            .map(c -> new Profile(c.getProfileid(),userid,username,c.getProfimg()))
             .flatMap(profileRepository::save)
             .map(savedProfile -> savedProfile.getProfileid())
             .onErrorReturn(-1);
             // .flatMap(profile ->
             //     ServerResponse.status(HttpStatus.CREATED));
                     // .body(profile.map(c -> new CustomerDto(c.getId(), c.getUserName())), CustomerDto.class));
+    }
+
+    public Flux<Profile> findAll() {
+    return profileRepository.findAll();
     }
 }

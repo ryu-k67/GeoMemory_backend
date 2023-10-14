@@ -11,11 +11,11 @@ import lombok.Data;
 
 @Data
 // @Entity
-// @Table(name="account")
+// @Table(name = "account")
 public class Account {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @Column(name="userid")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int userid;
 
     // @Column(name="mailaddress")
@@ -28,20 +28,15 @@ public class Account {
 
     }
 
-    public Account(int userid, String mailaddress, String password) {
-        this.userid = userid;
+    public Account(int userId, String mailaddress, String password) {
+        this.userid = userId;
         this.mailaddress = mailaddress;
         this.password = password;
     }
-
-    //@Override
-    //public int getUserid(){
-    //    return userid;
-    //}
-
-    @Override
-    public String toString() {
-    return "Account [userid=" + userid + ", mailaddress=" + mailaddress + ", password=" + password + "]";
-    }
+    
+    // @Override
+    // public String toString() {
+    // return "Account [userid=" + userid + ", mailaddress=" + mailaddress + ", password=" + password + "]";
+    // }
 
 }

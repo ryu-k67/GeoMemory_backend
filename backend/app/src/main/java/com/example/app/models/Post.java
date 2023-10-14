@@ -18,25 +18,19 @@ import lombok.Data;
 public class Post {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column(name = "postid")
     public int postid;
 
-    // @Column(name = "content")
     private String content;
 
     // @Column(name = "post_img")
     private byte[] postimg;
 
-    // @Column(name = "datetime")
     private LocalDateTime datetime;
 
-    // @Column(name = "latitude")
     private BigDecimal latitude;
 
-    // @Column(name = "longtitude")
     private BigDecimal longtitude;
 
-    // @Column(name = "userid")
     private int userid;
 
     public Post() {

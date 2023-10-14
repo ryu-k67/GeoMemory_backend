@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.models.AccountRequest;
 import com.example.app.service.AccountService;
 
-//import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -43,6 +42,19 @@ public class AccountController {
         return accountService.regist(accountRequest);
     }
 
+    //サインアップの処理
+    // @PostMapping("/signup")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public Mono<Integer> signup(@RequestBody AccountRequest accountRequest) {
+    //     Mono<Integer> userid = accountService.regist(accountRequest);
+    //     userid.subscribe(integerValue -> {
+    //         int intValue = integerValue != null ? integerValue : 0; // ヌルの場合は0
+    //         profileService.regist(intValue);
+    //     });
+
+    //     return userid;
+    // }
+
     
 
     //@GetMapping("/apps")
@@ -54,7 +66,6 @@ public class AccountController {
     //    return appService.findByTitleContaining(title);
     //}
 
-    //このGetメソッドはポストマンで機能した
     //@GetMapping("/apps/{id}")
     //@ResponseStatus(HttpStatus.OK)
     //public Mono<Account> getTutorialById(@PathVariable("id") int id) {

@@ -19,24 +19,22 @@ public class AccountService {
         return accountRepository.findByMailaddressAndPassword(mail, pass)
                 .map(Account::getUserid)
                 .switchIfEmpty(Mono.just(-1)); // 該当する行が見つからない場合には-1を返す
+               //.map(searchedAccount -> searchedAccount.getUserid());
     }
 
     public Mono<Integer> regist(AccountRequest accountRequest){
         var account = new Account();
-        String mailaddress = accountRequest.getMailaddress();
-        String password = accountRequest.getPassword();
-
-        account.setMailaddress(mailaddress);
-        account.setPassword(password);
+        account.setMailaddress(accountRequest.getMailaddress());
+        account.setPassword(accountRequest.getPassword());
 
         return accountRepository.save(account)
         .map(savedAccount -> savedAccount.getUserid())
         .onErrorReturn(-1);
     }
 
-    public Mono<Account> save(Account account) {
-    return accountRepository.save(account);
-    }
+    // public Mono<Account> save(Account account) {
+    // return accountRepository.save(account);
+    // }
 
     //public Flux<Account> findAll() {
     //return accountRepository.findAll();
