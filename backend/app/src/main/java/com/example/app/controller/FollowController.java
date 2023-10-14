@@ -30,25 +30,28 @@ public class FollowController {
 
     // フォロー関係の登録
     @PostMapping("/post")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> postFollow(@RequestBody FollowRequest followRequest){
         return followService.post(followRequest);
     }
     
     // 自分がフォローしてる人を取得
     @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Flux<Follow> getFollow(@PathVariable("id") int userid){
         return followService.get(userid);
     }
 
     // 自分がフォローしてる人数を取得
     @GetMapping("/get/followingNumber/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Long> getFollowingNumber(@PathVariable("id") int userid){
         return followService.getFollowingNumber(userid);
     }
 
     // 自分をフォローしてる人数を取得
     @GetMapping("/get/followerNumber/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Long> getFollowerNumber(@PathVariable("id") int followinguserid){
         return followService.getFollowerNumber(followinguserid);
     }

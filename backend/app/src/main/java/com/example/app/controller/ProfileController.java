@@ -28,25 +28,28 @@ public class ProfileController {
 
     //プロフィールの登録
     @PostMapping("/regist")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> registProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.registProfile(profileRequest);
     }
 
     // プロフィールの取得
     @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Profile> getProfile(@PathVariable("id") int userid){
         return profileService.getProfile(userid);
     }
 
     // プロフィールの更新
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Void> updateProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.updateProfile(profileRequest);
     }
 
     // プロフィールの全件取得
     @GetMapping("/get/all")
+    @ResponseStatus(HttpStatus.OK)
     public Flux<Profile> getProfileAll(){
         return profileService.findAll();
     }
