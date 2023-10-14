@@ -8,7 +8,7 @@
 CREATE TABLE IF NOT EXISTS account(
 -- CREATE TABLE account(
     userId SERIAL NOT NULL,
-    mailAddress VARCHAR(31) NOT NULL,
+    mailAddress VARCHAR(31) NOT NULL UNIQUE,
     password VARCHAR(31) NOT NULL,
     PRIMARY KEY (userId)
 );

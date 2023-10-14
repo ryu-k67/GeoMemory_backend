@@ -30,7 +30,7 @@ public class FollowController {
     // フォロー関係の登録
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Integer> postFollow(@RequestBody FollowRequest followRequest){
+    public Mono<Void> postFollow(@RequestBody FollowRequest followRequest){
         return followService.post(followRequest);
     }
     

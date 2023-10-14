@@ -21,29 +21,23 @@ public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
 
-    public Mono<Integer> registProfile(ProfileRequest profileRequest){
+    public Mono<Void> registProfile(ProfileRequest profileRequest){
         var profile = new Profile();
-        String username = profileRequest.getUsername();
-        //byte[] profImg = profileRequest.getProf_img();
-        int userid = profileRequest.getUserid();
 
-        // profile.setFollowernumber(0);
-        // profile.setFollowingnumber(0);
-        // profile.setPostnumber(0);
+        profile.setUsername(profileRequest.getUsername());
         profile.setProfimg(null);
-        profile.setUsername(username);
-        profile.setUserid(userid);
-        return profileRepository.save(profile)
-        .map(savedProfile -> savedProfile.getProfileid())
-        .onErrorReturn(-1);
+        profile.setUserid(profileRequest.getUserid());
+        return profileRepository.save(profile).then();
+        // .map(savedProfile -> savedProfile.getProfileid())
+        // .onErrorReturn(-1);
     }
 
     // プロフィールの取得
     public Mono<Profile> getProfile(int userid){
-        return profileRepository.findById(userid);
+        return profileRepository.findByUserid(userid);
     }
 
-    public Mono<Integer> updateProfile(ProfileRequest profileRequest){
+    public Mono<Void> updateProfile(ProfileRequest profileRequest){
         // var profile = new Profile();
         String username = profileRequest.getUsername();
         //byte[] profImg = profileRequest.getProf_img();
@@ -72,9 +66,9 @@ public class ProfileService {
 
         return profileRepository.findByUserid(userid)
             .map(c -> new Profile(c.getProfileid(),userid,username,c.getProfimg()))
-            .flatMap(profileRepository::save)
-            .map(savedProfile -> savedProfile.getProfileid())
-            .onErrorReturn(-1);
+            .flatMap(profileRepository::save).then();
+            // .map(savedProfile -> savedProfile.getProfileid())
+            // .onErrorReturn(-1);
             // .flatMap(profile ->
             //     ServerResponse.status(HttpStatus.CREATED));
                     // .body(profile.map(c -> new CustomerDto(c.getId(), c.getUserName())), CustomerDto.class));
