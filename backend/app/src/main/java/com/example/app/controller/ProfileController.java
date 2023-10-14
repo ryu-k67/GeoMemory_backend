@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.models.ProfileRequest;
 import com.example.app.service.ProfileService;
 
+import reactor.core.publisher.Mono;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
@@ -20,10 +22,9 @@ public class ProfileController {
     ProfileService profileService;
 
     //プロフィールの登録
-    @PostMapping("/registProfile")
+    @PostMapping("/profile/register")
     @ResponseStatus(HttpStatus.OK)
-    public void registProfile(@RequestBody ProfileRequest profileRequest){
-        profileService.registProfile(profileRequest);
-        return;
+    public Mono<Integer> registProfile(@RequestBody ProfileRequest profileRequest){
+        return profileService.registProfile(profileRequest);
     }
 }

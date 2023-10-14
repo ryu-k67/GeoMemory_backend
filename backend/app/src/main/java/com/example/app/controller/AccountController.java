@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.models.AccountRequest;
 import com.example.app.service.AccountService;
 
-//import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -27,7 +26,7 @@ public class AccountController {
     AccountService accountService;
 
     //サインインの処理
-    @GetMapping("/signin")
+    @GetMapping("/account/signin")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Integer> signin(@RequestBody AccountRequest accountRequest) {
         String mailaddress = accountRequest.getMailaddress();
@@ -37,11 +36,24 @@ public class AccountController {
     }
 
     //サインアップの処理
-    @PostMapping("/signup")
+    @PostMapping("/account/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Integer> signup(@RequestBody AccountRequest accountRequest) {
         return accountService.regist(accountRequest);
     }
+
+    //サインアップの処理
+    // @PostMapping("/account/signup")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public Mono<Integer> signup(@RequestBody AccountRequest accountRequest) {
+    //     Mono<Integer> userid = accountService.regist(accountRequest);
+    //     userid.subscribe(integerValue -> {
+    //         int intValue = integerValue != null ? integerValue : 0; // ヌルの場合は0
+    //         profileService.regist(intValue);
+    //     });
+
+    //     return userid;
+    // }
 
     
 
@@ -54,7 +66,6 @@ public class AccountController {
     //    return appService.findByTitleContaining(title);
     //}
 
-    //このGetメソッドはポストマンで機能した
     //@GetMapping("/apps/{id}")
     //@ResponseStatus(HttpStatus.OK)
     //public Mono<Account> getTutorialById(@PathVariable("id") int id) {

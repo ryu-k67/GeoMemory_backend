@@ -7,21 +7,13 @@ import org.springframework.data.annotation.Id;
 // import jakarta.persistence.GeneratedValue;
 // import jakarta.persistence.GenerationType;
 // import jakarta.persistence.Table;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Table;
 import lombok.Data;
-//import reactor.core.publisher.Mono;
 
 @Data
 // @Entity
 // @Table(name = "account")
-// @Entity
-// @Table(name="account")
 public class Account {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @Column(name="userid")
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int userid;
@@ -41,14 +33,10 @@ public class Account {
         this.mailaddress = mailaddress;
         this.password = password;
     }
-
-    //public int getUserid(){
-    //    return userId;
-    //}
-
-    @Override
-    public String toString() {
-    return "Account [userid=" + userid + ", mailaddress=" + mailaddress + ", password=" + password + "]";
-    }
+    
+    // @Override
+    // public String toString() {
+    // return "Account [userid=" + userid + ", mailaddress=" + mailaddress + ", password=" + password + "]";
+    // }
 
 }

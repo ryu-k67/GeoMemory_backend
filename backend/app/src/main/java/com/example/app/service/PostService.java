@@ -7,6 +7,7 @@ import com.example.app.models.Post;
 import com.example.app.models.PostRequest;
 import com.example.app.repositories.PostRepository;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -18,17 +19,19 @@ public class PostService {
     return postRepository.save(post);
     }
 
-    public void post(PostRequest postRequest) {
+    public Mono<Void> post(PostRequest postRequest) {
         var post = new Post();
         post.setContent(postRequest.getContent());
-        post.setPostImg(postRequest.getPostImg());
+        post.setPostimg(postRequest.getPostimg());
         post.setDatetime(postRequest.getDatetime());
         post.setLatitude(postRequest.getLatitude());
         post.setLongtitude(postRequest.getLongtitude());
-        post.setUserid(postRequest.getUserId());
-        //post.setPostid(-1);
-        postRepository.save(post);
-        return;
+        post.setUserid(postRequest.getUserid());
+        return postRepository.save(post).then();
+    }
+
+    public Flux<Post> findAll() {
+    return postRepository.findAll();
     }
 
     //public Post update(int id, Post post) {

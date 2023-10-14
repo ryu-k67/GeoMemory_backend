@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.app.models.Post;
-import com.example.app.models.PostRequest;
-import com.example.app.service.PostService;
+import com.example.app.models.Comment;
+import com.example.app.models.CommentRequest;
+import com.example.app.service.CommentService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/post")
-public class PostController {
+@RequestMapping("/api/comment")
+public class CommentController {
     @Autowired
-    PostService postService;
+    CommentService commentService;
 
-    //投稿登録処理
+    //コメント登録処理
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Void> post(@RequestBody PostRequest postRequest) {
-        return postService.post(postRequest);
+    public Mono<Void> post(@RequestBody CommentRequest commentRequest) {
+        return commentService.post(commentRequest);
     }
 
-    //投稿全権取得処理
+    //コメント全権取得処理
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Post> getAllPosts() {
-        return postService.findAll();
+    public Flux<Comment> getAllComments() {
+        return commentService.findAll();
     // if (title == null)
     //    return appService.findAll();
     // else

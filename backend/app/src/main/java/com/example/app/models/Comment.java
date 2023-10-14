@@ -16,11 +16,11 @@ import lombok.Data;
 public class Comment {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
+    private int commentid;
 
-    private int postId;
+    private int postid;
 
-    private int userId;
+    private int userid;
 
     private String content;
 
@@ -30,10 +30,10 @@ public class Comment {
 
     }
 
-    public Comment(int commentId, int postId, int userId, String content, LocalDateTime datetime){
-        this.commentId = commentId;
-        this.postId = postId;
-        this.userId = userId;
+    public Comment(int commentid, int postid, int userid, String content, LocalDateTime datetime){
+        this.commentid = commentid;
+        this.postid = postid;
+        this.userid = userid;
         this.content = content;
         this.datetime = datetime;
     }

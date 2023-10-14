@@ -14,20 +14,20 @@ import lombok.Data;
 // @Table(name = "good")
 public class Good {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int goodId;
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int goodid;
 
-    private int userId;
+    private int userid;
 
-    private int postId;
+    private int postid;
 
     public Good(){
 
     }
     
-    public Good(int goodId, int userId, int postId){
-        this.goodId = goodId;
-        this.userId = userId;
-        this.postId = postId;
+    public Good(int goodid, int userid, int postid){
+        this.goodid = goodid;
+        this.userid = userid;
+        this.postid = postid;
     }
 }

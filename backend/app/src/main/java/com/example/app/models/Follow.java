@@ -15,19 +15,19 @@ import lombok.Data;
 public class Follow {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int followId;
+    private int followid;
 
-    private int userId;
+    private int userid;
 
-    private int followedUserId;
+    private int followeduserid;
 
     public Follow(){
 
     }
 
-    public Follow(int followId, int userId, int followedUserId){
-        this.followId = followId;
-        this.userId = userId;
-        this.followedUserId = followedUserId;
+    public Follow(int followid, int userid, int followeduserid){
+        this.followid = followid;
+        this.userid = userid;
+        this.followeduserid = followeduserid;
     }
 }
