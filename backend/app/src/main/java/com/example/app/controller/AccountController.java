@@ -26,7 +26,7 @@ public class AccountController {
     AccountService accountService;
 
     //サインインの処理
-    @GetMapping("/account/signin")
+    @GetMapping("/signin")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Integer> signin(@RequestBody AccountRequest accountRequest) {
         String mailaddress = accountRequest.getMailaddress();
@@ -36,14 +36,14 @@ public class AccountController {
     }
 
     //サインアップの処理
-    @PostMapping("/account/signup")
+    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Integer> signup(@RequestBody AccountRequest accountRequest) {
         return accountService.regist(accountRequest);
     }
 
     //サインアップの処理
-    // @PostMapping("/account/signup")
+    // @PostMapping("/signup")
     // @ResponseStatus(HttpStatus.CREATED)
     // public Mono<Integer> signup(@RequestBody AccountRequest accountRequest) {
     //     Mono<Integer> userid = accountService.regist(accountRequest);
