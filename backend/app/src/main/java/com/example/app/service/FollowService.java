@@ -42,4 +42,10 @@ public class FollowService {
         // .flatMap(s -> s.size());
     }
     
+    public Mono<Void> delete(FollowRequest followRequest){
+        return followRepository.deleteByUseridAndFollowinguserid(followRequest.getUserid(), followRequest.getFollowinguserid())
+        .then();
+        // .map(savedFollow -> savedFollow.getFollowid())
+        // .onErrorReturn(-1);
+    }
 }
