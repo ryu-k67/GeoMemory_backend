@@ -27,7 +27,7 @@ public class PostController {
 
     //投稿登録処理
     @PostMapping("/post")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> post(@RequestBody PostRequest postRequest) {
         return postService.post(postRequest);
     }

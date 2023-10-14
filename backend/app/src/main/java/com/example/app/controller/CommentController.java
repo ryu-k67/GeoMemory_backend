@@ -26,7 +26,7 @@ public class CommentController {
 
     //コメント登録処理
     @PostMapping("/post")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> post(@RequestBody CommentRequest commentRequest) {
         return commentService.post(commentRequest);
     }
