@@ -29,7 +29,7 @@ public class Post {
 
     private BigDecimal latitude;
 
-    private BigDecimal longtitude;
+    private BigDecimal longitude;
 
     private int userid;
 
@@ -37,13 +37,13 @@ public class Post {
 
     }
 
-    public Post(int postid, String content, byte[] postimg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
+    public Post(int postid, String content, byte[] postimg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longitude, int userid) {
         this.postid = postid;
         this.content = content;
         this.postimg = postimg;
         this.datetime = datetime;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
         this.userid = userid;
     }
     
