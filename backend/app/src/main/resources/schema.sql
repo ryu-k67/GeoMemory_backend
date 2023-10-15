@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS post(
     postImg BYTEA,
     datetime TIMESTAMP(0),
     latitude NUMERIC(5,2),
-    longtitude NUMERIC(5,2),
+    longitude NUMERIC(5,2),
     userId INT NOT NULL,
     PRIMARY KEY (postId),
     FOREIGN KEY (userId) REFERENCES account
