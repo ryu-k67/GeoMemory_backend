@@ -26,7 +26,7 @@ public class PostService {
         post.setPostimg(null);
         post.setDatetime(postRequest.getDatetime());
         post.setLatitude(postRequest.getLatitude());
-        post.setLongtitude(postRequest.getLongtitude());
+        post.setLongitude(postRequest.getLongitude());
         post.setUserid(postRequest.getUserid());
         return postRepository.save(post).then();
     }
