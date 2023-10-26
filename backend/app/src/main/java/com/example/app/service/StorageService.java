@@ -34,26 +34,26 @@ public class StorageService {
         }
     }
 
-    public Mono<String> save(Mono<FilePart> filePartMono, String path) {
-        // System.out.println("root="+root);
-        System.out.println("abs="+root.toAbsolutePath());
-        // System.out.println("par="+root.getParent());
-        // System.out.println("par="+root.resolve(""));
-        // if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
-        //     return Mono.just(filename);
-        // }
+    // public Mono<String> save(Mono<FilePart> filePartMono, String path) {
+    //     // System.out.println("root="+root);
+    //     System.out.println("abs="+root.toAbsolutePath());
+    //     // System.out.println("par="+root.getParent());
+    //     // System.out.println("par="+root.resolve(""));
+    //     // if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
+    //     //     return Mono.just(filename);
+    //     // }
 
-        return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
-            String filename = filePart.filename();
-            // root.resolve(filename);
-            return filePart.transferTo(root.resolve(path))
-                    // .then(filePart.filename());
-                    .then(Mono.just(filename));
-        });
-    }
+    //     return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
+    //         String filename = filePart.filename();
+    //         // root.resolve(filename);
+    //         return filePart.transferTo(root.resolve(path))
+    //                 // .then(filePart.filename());
+    //                 .then(Mono.just(filename));
+    //     });
+    // }
 
 
-    public Mono<String> saveImg(Mono<FilePart> filePartMono, StorageRequest sr) {
+    public Mono<String> savePostImg(Mono<FilePart> filePartMono, StorageRequest sr) {
         // System.out.println("root="+root);
         System.out.println("abs="+root.toAbsolutePath());
         // System.out.println("par="+root.getParent());
@@ -100,26 +100,71 @@ public class StorageService {
         });
     }
 
-    public String save(FilePart filePart, String path) {
+    public Mono<String> saveProfImg(Mono<FilePart> filePartMono, Integer userid) {
         // System.out.println("root="+root);
-        // System.out.println("abs="+root.toAbsolutePath().toString());
-        // System.out.println("boo="+root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10"));
+        System.out.println("abs="+root.toAbsolutePath());
         // System.out.println("par="+root.getParent());
         // System.out.println("par="+root.resolve(""));
         if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
-            return "error";
+            return Mono.just("error");
         }
 
-        // return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
-        // String filename = filePart.filename();
-        // String path = "/profile/"+userid
-        // root.resolve(filename);
-        filePart.transferTo(root.resolve(path));
-                // .then(filename);
-                // .then(Mono.just(filename));
-        // });
-        return root.resolve(path).toString();
+        return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
+            String filename = filePart.filename();
+            String path = "profile";
+
+            System.out.println(root.resolve(path));
+            // File tmpPath = new File(path);
+
+            if(Files.exists(root.resolve(path))){
+            // if(tmpPath.exists()){
+                System.out.println("exist");
+            }
+            else{
+                System.out.println("none");
+                // if(tmpPath.mkdirs()){
+                //     System.out.println("success");
+                // }
+                // else{
+                //     System.out.println("error");
+                // }
+                try {
+                    Files.createDirectories(root.resolve(path));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            
+            String fullpath = path+Integer.toString(userid)+".png";
+            // root.resolve(filename);
+            return filePart.transferTo(root.resolve(fullpath))
+                    // .then(filePart.filename());
+                    .then(Mono.just(filename));
+        });
     }
+
+
+    // public String save(FilePart filePart, String path) {
+    //     // System.out.println("root="+root);
+    //     // System.out.println("abs="+root.toAbsolutePath().toString());
+    //     // System.out.println("boo="+root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10"));
+    //     // System.out.println("par="+root.getParent());
+    //     // System.out.println("par="+root.resolve(""));
+    //     if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
+    //         return "error";
+    //     }
+
+    //     // return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
+    //     // String filename = filePart.filename();
+    //     // String path = "/profile/"+userid
+    //     // root.resolve(filename);
+    //     filePart.transferTo(root.resolve(path));
+    //             // .then(filename);
+    //             // .then(Mono.just(filename));
+    //     // });
+    //     return root.resolve(path).toString();
+    // }
 
     public Flux<DataBuffer> load(String filename) {
         try {

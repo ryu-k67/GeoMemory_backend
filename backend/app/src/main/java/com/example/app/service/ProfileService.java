@@ -28,39 +28,39 @@ public class ProfileService {
         var profile = new Profile();
 
         profile.setUsername(profileRequest.getUsername());
-        profile.setProfimg(null);
+        profile.setImgpath("uploads/"+Integer.toString(profileRequest.getUserid())+".png");
         profile.setUserid(profileRequest.getUserid());
         return profileRepository.save(profile).then();
         // .map(savedProfile -> savedProfile.getProfileid())
         // .onErrorReturn(-1);
     }
 
-    public Mono<Integer> registProfileImg(
-                        // ProfileRequest profileRequest,
-                        // int userid,
-                        // String username,
-                        MultipartFile file
-                        )
-                        // throws IOException
-                        {
-        var profile = new Profile();
-        System.out.println(file.getOriginalFilename());
+    // public Mono<Integer> registProfileImg(
+    //                     // ProfileRequest profileRequest,
+    //                     // int userid,
+    //                     // String username,
+    //                     MultipartFile file
+    //                     )
+    //                     // throws IOException
+    //                     {
+    //     var profile = new Profile();
+    //     System.out.println(file.getOriginalFilename());
 
-        // profile.setUsername(profileRequest.getUsername());
-        profile.setUsername("ddd");
-        try {
-            profile.setProfimg(file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-            profile.setProfimg(null);
-        }
-        // profile.setUserid(profileRequest.getUserid());
-        profile.setUserid(6);
-        return profileRepository.save(profile)
-        // .then();
-        .map(savedProfile -> savedProfile.getProfileid())
-        .onErrorReturn(-1);
-    }
+    //     // profile.setUsername(profileRequest.getUsername());
+    //     profile.setUsername("ddd");
+    //     try {
+    //         profile.setProfimg(file.getBytes());
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //         profile.setProfimg(null);
+    //     }
+    //     // profile.setUserid(profileRequest.getUserid());
+    //     profile.setUserid(6);
+    //     return profileRepository.save(profile)
+    //     // .then();
+    //     .map(savedProfile -> savedProfile.getProfileid())
+    //     .onErrorReturn(-1);
+    // }
 
 
     // プロフィールの取得
@@ -96,7 +96,7 @@ public class ProfileService {
         // });
 
         return profileRepository.findByUserid(userid)
-            .map(c -> new Profile(c.getProfileid(),userid,username,c.getProfimg()))
+            .map(c -> new Profile(c.getProfileid(),userid,username,c.getImgpath()))
             .flatMap(profileRepository::save).then();
             // .map(savedProfile -> savedProfile.getProfileid())
             // .onErrorReturn(-1);

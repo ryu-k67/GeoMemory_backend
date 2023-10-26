@@ -113,7 +113,7 @@ public class PostController {
         // }
         // String userid = Integer.toString(storageRequest.getUserid());
         // String path="post/supporterz_hackathon2023_vol.png";
-        return storageService.saveImg(filePartMono,storageRequest).map(
+        return storageService.savePostImg(filePartMono,storageRequest).map(
             (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
         // return storageService.save(filePartMono,path).map(
             // (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
