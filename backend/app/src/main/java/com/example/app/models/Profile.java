@@ -45,7 +45,7 @@ public class Profile {
         //this.postnumber = postnumber;
     }
 
-    public void setProfimg(int i, int j, int k, int l, int m) {
-    }
+    // public void setProfimg(int i, int j, int k, int l, int m) {
+    // }
 
 }

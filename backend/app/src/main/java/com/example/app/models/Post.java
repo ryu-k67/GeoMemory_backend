@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
 // import jakarta.persistence.GenerationType;
 // import jakarta.persistence.Table;
 import lombok.Data;
+import reactor.core.publisher.Mono;
 
 @Data
 // @Entity
@@ -23,13 +24,14 @@ public class Post {
     private String content;
 
     // @Column(name = "post_img")
-    private byte[] postimg;
+    // private byte[] postimg;
+    private String imgpath;
 
     private LocalDateTime datetime;
 
     private BigDecimal latitude;
 
-    private BigDecimal longtitude;
+    private BigDecimal longitude;
 
     private int userid;
 
@@ -37,13 +39,13 @@ public class Post {
 
     }
 
-    public Post(int postid, String content, byte[] postimg, LocalDateTime datetime, BigDecimal latitude, BigDecimal longtitude, int userid) {
+    public Post(int postid, String content, String imgpath, LocalDateTime datetime, BigDecimal latitude, BigDecimal longitude, int userid) {
         this.postid = postid;
         this.content = content;
-        this.postimg = postimg;
+        this.imgpath = imgpath;
         this.datetime = datetime;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
         this.userid = userid;
     }
     

@@ -1,5 +1,7 @@
 package com.example.app.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.models.Profile;
 import com.example.app.models.ProfileRequest;
@@ -31,6 +36,28 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> registProfile(@RequestBody ProfileRequest profileRequest){
         return profileService.registProfile(profileRequest);
+    }
+
+    @PostMapping("/regist/img")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Integer> registProfileImg(
+                    // @RequestPart("user") ProfileRequest profileRequest,
+                    // @RequestPart("file") MultipartFile file
+                    // @RequestParam(name = "id") int userid,
+                    // @RequestParam(name = "name") String username,
+                    @RequestParam(name = "file") MultipartFile file
+                    )
+                    // throws IOException
+                    {
+
+        System.out.println(file.getOriginalFilename());
+                    
+        return profileService.registProfileImg(
+                        // profileRequest,
+                        // userid,
+                        // username,
+                        file
+                        );
     }
 
     // プロフィールの取得

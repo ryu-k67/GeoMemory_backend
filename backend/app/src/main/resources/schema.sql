@@ -41,10 +41,11 @@ CREATE TABLE IF NOT EXISTS post(
 -- CREATE TABLE post(
     postId SERIAL NOT NULL,
     content VARCHAR(511),
-    postImg BYTEA,
+    -- postImg BYTEA,
+    imgpath VARCHAR(255),
     datetime TIMESTAMP(0),
     latitude NUMERIC(5,2),
-    longtitude NUMERIC(5,2),
+    longitude NUMERIC(5,2),
     userId INT NOT NULL,
     PRIMARY KEY (postId),
     FOREIGN KEY (userId) REFERENCES account
