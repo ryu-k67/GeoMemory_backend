@@ -97,22 +97,22 @@ public class PostController {
     StorageService storageService;
 
     // ファイルだけやり取り、フォルダに保存
-    // @PostMapping("/upload")
-    // @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
-    // public Mono<ResponseEntity> uploadFile(@RequestPart("file") Mono<FilePart> filePartMono) {
-    //     String path="supporterz_hackathon2023_vol.png";
-    //     return storageService.save(filePartMono,path).map(
-    //         (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
-    // }
-
+    @PostMapping("/upload")
     @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
-    public Mono<Void> upload(
-                        @RequestPart("content") PostRequest postRequest,
-                        @RequestPart("file") Mono<FilePart> filePartMono
-                        // @RequestPart("file") FilePart filePartMono
-                        ) {
-        return postService.upload(postRequest,filePartMono);
-        // return storageService.save(filePartMono).map(
-        //     (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
+    public Mono<ResponseEntity> uploadFile(@RequestPart("file") Mono<FilePart> filePartMono) {
+        String path="supporterz_hackathon2023_vol.png";
+        return storageService.save(filePartMono,path).map(
+            (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
     }
+
+    // @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
+    // public Mono<Void> upload(
+    //                     @RequestPart("content") PostRequest postRequest,
+    //                     // @RequestPart("file") Mono<FilePart> filePartMono
+    //                     @RequestPart("file") FilePart filePartMono
+    //                     ) {
+    //     return postService.upload(postRequest,filePartMono);
+    //     // return storageService.save(filePartMono).map(
+    //     //     (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
+    // }
 }

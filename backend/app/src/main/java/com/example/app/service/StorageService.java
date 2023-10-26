@@ -32,10 +32,10 @@ public class StorageService {
 
     public Mono<String> save(Mono<FilePart> filePartMono, String path) {
         // System.out.println("root="+root);
-        // System.out.println("abs="+root.toAbsolutePath());
+        System.out.println("abs="+root.toAbsolutePath());
         // System.out.println("par="+root.getParent());
         // System.out.println("par="+root.resolve(""));
-        // if(root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
+        // if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
         //     return Mono.just(filename);
         // }
 
