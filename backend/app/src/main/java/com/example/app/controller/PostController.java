@@ -1,9 +1,9 @@
 package com.example.app.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+// import java.io.File;
+// import java.io.IOException;
+// import java.nio.file.Files;
+// import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.models.Post;
 import com.example.app.models.PostRequest;
@@ -28,7 +28,7 @@ import com.example.app.models.StorageRequest;
 import com.example.app.service.PostService;
 import com.example.app.service.StorageService;
 
-import io.r2dbc.postgresql.codec.Path;
+// import io.r2dbc.postgresql.codec.Path;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -39,7 +39,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    //投稿登録処理
+    //投稿登録処理(画像本体保存なし)
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Integer> post(@RequestBody PostRequest postRequest) {
@@ -67,37 +67,37 @@ public class PostController {
 
 
     // @PostMapping("/post/img")
-    @RequestMapping(value="post/img", method=RequestMethod.POST, consumes = "multipart/form-data")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Integer> registPostImg(
-                    // @RequestPart("content") PostRequest postRequest,
-                    // @RequestPart("file") MultipartFile file
-                    @RequestPart("file") FilePart file
-                    // @RequestParam(name = "id") int userid,
-                    // @RequestParam(name = "name") String username,
-                    // @RequestParam(name = "file") MultipartFile file
-                    // @RequestBody PostRequest postRequest
-                    )
-                    // throws IOException
-                    {
+    // @RequestMapping(value="post/img", method=RequestMethod.POST, consumes = "multipart/form-data")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public Mono<Integer> registPostImg(
+    //                 // @RequestPart("content") PostRequest postRequest,
+    //                 // @RequestPart("file") MultipartFile file
+    //                 @RequestPart("file") FilePart file
+    //                 // @RequestParam(name = "id") int userid,
+    //                 // @RequestParam(name = "name") String username,
+    //                 // @RequestParam(name = "file") MultipartFile file
+    //                 // @RequestBody PostRequest postRequest
+    //                 )
+    //                 // throws IOException
+    //                 {
 
-        // System.out.println(file.getOriginalFilename());
+    //     // System.out.println(file.getOriginalFilename());
                     
-        return postService.registPostImg(
-                        // profileRequest,
-                        // userid,
-                        // username,
-                        // file
-                        // postRequest,
-                        file
-                        );
-    }
+    //     return postService.registPostImg(
+    //                     // profileRequest,
+    //                     // userid,
+    //                     // username,
+    //                     // file
+    //                     // postRequest,
+    //                     file
+    //                     );
+    // }
 
 
     @Autowired
     StorageService storageService;
 
-    // ファイルだけやり取り、フォルダに保存
+    // 画像本体保存
     @PostMapping("/upload")
     @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
     public Mono<ResponseEntity> uploadFile(
