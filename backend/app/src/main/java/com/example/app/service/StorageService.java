@@ -1,10 +1,12 @@
 package com.example.app.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -14,6 +16,8 @@ import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.core.io.buffer.DefaultDataBufferFactory;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
+
+import com.example.app.models.StorageRequest;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -43,6 +47,54 @@ public class StorageService {
             String filename = filePart.filename();
             // root.resolve(filename);
             return filePart.transferTo(root.resolve(path))
+                    // .then(filePart.filename());
+                    .then(Mono.just(filename));
+        });
+    }
+
+
+    public Mono<String> saveImg(Mono<FilePart> filePartMono, StorageRequest sr) {
+        // System.out.println("root="+root);
+        System.out.println("abs="+root.toAbsolutePath());
+        // System.out.println("par="+root.getParent());
+        // System.out.println("par="+root.resolve(""));
+        if(!root.toAbsolutePath().toString().contains("supporterz_hackathon2023_vol.10")){
+            return Mono.just("error");
+        }
+
+        return filePartMono.doOnNext(fp -> System.out.println("Receiving File:" + fp.filename())).flatMap(filePart -> {
+            String filename = filePart.filename();
+            LocalDateTime datetime = sr.getDatetime();
+            String path = "post/"+Integer.toString(sr.getUserid());
+
+            System.out.println(root.resolve(path));
+            // File tmpPath = new File(path);
+
+            if(Files.exists(root.resolve(path))){
+            // if(tmpPath.exists()){
+                System.out.println("exist");
+            }
+            else{
+                System.out.println("none");
+                // if(tmpPath.mkdirs()){
+                //     System.out.println("success");
+                // }
+                // else{
+                //     System.out.println("error");
+                // }
+                try {
+                    Files.createDirectories(root.resolve(path));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            
+            String fullpath = path+"/"+Integer.toString(datetime.getYear())+Integer.toString(datetime.getMonthValue())
+                                +Integer.toString(datetime.getDayOfMonth())+Integer.toString(datetime.getHour())
+                                +Integer.toString(datetime.getMinute())+Integer.toString(datetime.getSecond())+".png";
+            // root.resolve(filename);
+            return filePart.transferTo(root.resolve(fullpath))
                     // .then(filePart.filename());
                     .then(Mono.just(filename));
         });

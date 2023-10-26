@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,12 @@ public class PostService {
     return postRepository.save(post);
     }
 
-    public Mono<Void> post(PostRequest postRequest) {
+    public Mono<Integer> post(PostRequest postRequest) {
+        System.out.println("post");
         var post = new Post();
+
+        LocalDateTime datetime = postRequest.getDatetime();
+        
         post.setContent(postRequest.getContent());
         // post.setPostimg(postRequest.getPostimg());
         // post.setPostimg(null);
@@ -47,7 +52,18 @@ public class PostService {
         post.setLatitude(postRequest.getLatitude());
         post.setLongitude(postRequest.getLongitude());
         post.setUserid(postRequest.getUserid());
-        return postRepository.save(post).then();
+
+        post.setImgpath("uploads/post/"+Integer.toString(postRequest.getUserid())+"/"
+                        +Integer.toString(datetime.getYear())+Integer.toString(datetime.getMonthValue())
+                        +Integer.toString(datetime.getDayOfMonth())+Integer.toString(datetime.getHour())
+                        +Integer.toString(datetime.getMinute())+Integer.toString(datetime.getSecond()));
+
+        // postRepository.save(post);
+        // System.out.println("fin");
+        return postRepository.save(post)
+        // .then();
+        .map(savedPost -> savedPost.getPostid())
+        .onErrorReturn(-1);
     }
 
     public Flux<Post> findAll() {
@@ -189,13 +205,18 @@ public class PostService {
                         ){
         var post = new Post();
 
+        LocalDateTime datetime = postRequest.getDatetime();
+
         post.setContent(postRequest.getContent());
-        post.setDatetime(postRequest.getDatetime());
+        post.setDatetime(datetime);
         post.setLatitude(postRequest.getLatitude());
         post.setLongitude(postRequest.getLongitude());
         post.setUserid(postRequest.getUserid());
 
-        // String path = "post"+Integer.toString(postRequest.getUserid());
+        // String path = "post"+Integer.toString(postRequest.getUserid())
+        //                 +Integer.toString(datetime.getYear())+Integer.toString(datetime.getMonthValue())
+        //                 +Integer.toString(datetime.getDayOfMonth())+Integer.toString(datetime.getHour())
+        //                 +Integer.toString(datetime.getMinute())+Integer.toString(datetime.getSecond());
         String path = "post";
         storageService.save(filePartMono, path)
         // .then(post.setImgpath("uploads/post/"))

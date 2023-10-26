@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.models.Post;
 import com.example.app.models.PostRequest;
+import com.example.app.models.StorageRequest;
 import com.example.app.service.PostService;
 import com.example.app.service.StorageService;
 
@@ -41,7 +42,7 @@ public class PostController {
     //投稿登録処理
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Void> post(@RequestBody PostRequest postRequest) {
+    public Mono<Integer> post(@RequestBody PostRequest postRequest) {
         return postService.post(postRequest);
     }
     
@@ -99,10 +100,23 @@ public class PostController {
     // ファイルだけやり取り、フォルダに保存
     @PostMapping("/upload")
     @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
-    public Mono<ResponseEntity> uploadFile(@RequestPart("file") Mono<FilePart> filePartMono) {
-        String path="supporterz_hackathon2023_vol.png";
-        return storageService.save(filePartMono,path).map(
+    public Mono<ResponseEntity> uploadFile(
+                        @RequestPart("content") StorageRequest storageRequest,
+                        @RequestPart("file") Mono<FilePart> filePartMono
+                        ) {
+        // return postService.post(postRequest);
+        // try {
+        //     Thread.sleep(10000);
+        // } catch (InterruptedException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
+        // String userid = Integer.toString(storageRequest.getUserid());
+        // String path="post/supporterz_hackathon2023_vol.png";
+        return storageService.saveImg(filePartMono,storageRequest).map(
             (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
+        // return storageService.save(filePartMono,path).map(
+            // (filename) -> ResponseEntity.ok().body("Uploaded the file successfully: " + filename));
     }
 
     // @RequestMapping(value="upload", method=RequestMethod.POST, consumes = "multipart/form-data")
