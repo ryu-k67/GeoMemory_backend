@@ -1,11 +1,14 @@
 package com.example.app.service;
 
+import java.io.IOException;
+
 // import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 // import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.models.Profile;
 import com.example.app.models.ProfileRequest;
@@ -25,12 +28,40 @@ public class ProfileService {
         var profile = new Profile();
 
         profile.setUsername(profileRequest.getUsername());
-        profile.setProfimg(null);
+        profile.setImgpath("uploads/"+Integer.toString(profileRequest.getUserid())+".png");
         profile.setUserid(profileRequest.getUserid());
         return profileRepository.save(profile).then();
         // .map(savedProfile -> savedProfile.getProfileid())
         // .onErrorReturn(-1);
     }
+
+    // public Mono<Integer> registProfileImg(
+    //                     // ProfileRequest profileRequest,
+    //                     // int userid,
+    //                     // String username,
+    //                     MultipartFile file
+    //                     )
+    //                     // throws IOException
+    //                     {
+    //     var profile = new Profile();
+    //     System.out.println(file.getOriginalFilename());
+
+    //     // profile.setUsername(profileRequest.getUsername());
+    //     profile.setUsername("ddd");
+    //     try {
+    //         profile.setProfimg(file.getBytes());
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //         profile.setProfimg(null);
+    //     }
+    //     // profile.setUserid(profileRequest.getUserid());
+    //     profile.setUserid(6);
+    //     return profileRepository.save(profile)
+    //     // .then();
+    //     .map(savedProfile -> savedProfile.getProfileid())
+    //     .onErrorReturn(-1);
+    // }
+
 
     // プロフィールの取得
     public Mono<Profile> getProfile(int userid){
@@ -65,7 +96,7 @@ public class ProfileService {
         // });
 
         return profileRepository.findByUserid(userid)
-            .map(c -> new Profile(c.getProfileid(),userid,username,c.getProfimg()))
+            .map(c -> new Profile(c.getProfileid(),userid,username,c.getImgpath()))
             .flatMap(profileRepository::save).then();
             // .map(savedProfile -> savedProfile.getProfileid())
             // .onErrorReturn(-1);

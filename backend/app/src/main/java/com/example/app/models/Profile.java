@@ -20,7 +20,8 @@ public class Profile {
     private String username;
 
     // @Column(name = "prof_img")
-    private byte[] profimg;
+    // private byte[] profimg;
+    private String imgpath;
 
     // @Column(name = "followingNumber")
     //private int followingnumber;
@@ -35,17 +36,17 @@ public class Profile {
 
     }
 
-    public Profile(int profileid,int userid, String username, byte[] profimg){
+    public Profile(int profileid,int userid, String username, String imgpath){
         this.profileid = profileid;
         this.userid = userid;
         this.username = username;
-        this.profimg = profimg;
+        this.imgpath = imgpath;
         //this.followingnumber = followingnumber;
         //this.followernumber = followernumber;
         //this.postnumber = postnumber;
     }
 
-    public void setProfimg(int i, int j, int k, int l, int m) {
-    }
+    // public void setProfimg(int i, int j, int k, int l, int m) {
+    // }
 
 }
