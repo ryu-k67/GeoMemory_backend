@@ -9,6 +9,11 @@
 ・Extension Pack for Java(VScode拡張機能)  
 ・Spring Boot Extension Pack(VScode拡張機能)  
 
+# DBのインストール
+・Postgresqlのインストール  
+・passwordを設定(backend/app/src/main/resources/application.propertiesの該当箇所に記入)  
+・pgAdmin4でDatabeseの下にデータベース名testdbで作成  
+
 # command
 ・ローカルリポジトリにプログラムを持ってくる  
 ```
